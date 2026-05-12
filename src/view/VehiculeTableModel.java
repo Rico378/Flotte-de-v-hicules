@@ -4,11 +4,7 @@ import model.Véhicule;
 import javax.swing.table.AbstractTableModel;
 import java.util.*;
 
-/**
- * VehiculeTableModel : TableModel personnalisé pour afficher les véhicules.
- * Concept OOP : Modèle MVC pour JTable, tri dynamique
- * Permet le tri au clic sur les en-têtes
- */
+
 public class VehiculeTableModel extends AbstractTableModel {
     private static final long serialVersionUID = 1L;
     
@@ -75,17 +71,14 @@ public class VehiculeTableModel extends AbstractTableModel {
         return false; // Les cellules ne sont pas éditables directement
     }
     
-    /**
-     * Mettre à jour les données et rafraîchir le tableau
-     */
+    //Mettre à jour les données et rafraîchir le tableau
+    
     public void mettreAJourDonnees(List<Véhicule> vehicules) {
         this.donnees = new ArrayList<>(vehicules);
         fireTableDataChanged();
     }
     
-    /**
-     * Trier les données selon la colonne sélectionnée
-     */
+    //     Trier les données selon la colonne sélectionnée
     public void trierParColonne(int colonneIndex) {
         if (colonneTriee == colonneIndex) {
             // Inverser l'ordre si on clique sur la même colonne
@@ -115,9 +108,10 @@ public class VehiculeTableModel extends AbstractTableModel {
         fireTableDataChanged();
     }
     
-    /**
-     * Obtenir le véhicule à une ligne donnée
-     */
+    
+      //Obtenir le véhicule à une ligne donnée
+
+
     public Véhicule obtenirVehicule(int rowIndex) {
         if (rowIndex >= 0 && rowIndex < donnees.size()) {
             return donnees.get(rowIndex);
