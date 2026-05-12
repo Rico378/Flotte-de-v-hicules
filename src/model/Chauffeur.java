@@ -5,7 +5,7 @@ public class VéhiculeLourd extends Véhicule implements Assignable, Maintenable
     private static final long serialVersionUID = 1L;
     
     // Attributs spécifiques au véhicule lourd
-    private int chargeMaximale; // en kg
+    private int chargeMaximale; 
     private Mission missionActuelle;
     private boolean necessiteEntretien;
     private String descriptionEntretien;
@@ -76,7 +76,6 @@ public class VéhiculeLourd extends Véhicule implements Assignable, Maintenable
     
     @Override
     public boolean necessiteEntretien() {
-        // Maintenance tous les 10 000 km pour les véhicules lourds
         return (this.getKilometrage() % 10000) > 9500 || necessiteEntretien;
     }
     
