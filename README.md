@@ -1,4 +1,4 @@
-# Gestionnaire Flotte de Véhicules - Projet POO Avancée
+# Gestionnaire Flotte de Véhicules
 
 ## Description
 
