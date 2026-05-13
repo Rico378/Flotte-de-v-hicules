@@ -26,11 +26,13 @@ public class VueListeVehicules extends JPanel implements GestionnaireFlotteObser
         setLayout(new BorderLayout(10, 10));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         
+        // tableau
         modelVehicules = new VehiculeTableModel(gestionnaire.obtenirVehicules());
         tableVehicules = new JTable(modelVehicules);
         tableVehicules.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tableVehicules.setRowHeight(25);
         
+        // Tri au clic sur les en-têtes
         JTableHeader header = tableVehicules.getTableHeader();
         header.addMouseListener(new MouseListener() {
             @Override
@@ -52,16 +54,19 @@ public class VueListeVehicules extends JPanel implements GestionnaireFlotteObser
         JScrollPane scrollVehicules = new JScrollPane(tableVehicules);
         add(scrollVehicules, BorderLayout.CENTER);
         
+        // info du panneau
         labelInfos = new JLabel();
         mettreAJourInfos();
         add(labelInfos, BorderLayout.NORTH);
         
+        // Bouton du panneau
         JPanel panneauBoutons = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 5));
         
         btnAjouter = new JButton("Ajouter");
         btnSupprimer = new JButton("Supprimer");
         btnEntretien = new JButton("Entretien");
         
+        // Les listeners délèguent AU CONTRÔLEUR
         btnAjouter.addActionListener(e -> afficherDialogAjout());
         btnSupprimer.addActionListener(e -> supprimerVehiculeSelectionnee());
         btnEntretien.addActionListener(e -> afficherDialogEntretien());
@@ -73,7 +78,8 @@ public class VueListeVehicules extends JPanel implements GestionnaireFlotteObser
         add(panneauBoutons, BorderLayout.SOUTH);
     }
     
-  private void mettreAJourInfos() {
+  //MAJ des infos
+    private void mettreAJourInfos() {
         long total = gestionnaire.obtenirVehicules().size();
         long maintenance = gestionnaire.obtenirNombreVehiculesEnMaintenance();
         double taux = gestionnaire.obtenirTauxDisponibilite();
@@ -84,7 +90,8 @@ public class VueListeVehicules extends JPanel implements GestionnaireFlotteObser
         ));
     }
     
-   private void afficherDialogAjout() {
+   // Afficher le dialog pour ajouter un véhicule
+    private void afficherDialogAjout() {
         JDialog dialog = new JDialog((Frame) SwingUtilities.getWindowAncestor(this), "Ajouter un véhicule", true);
         dialog.setSize(400, 300);
         dialog.setLocationRelativeTo(this);
@@ -164,7 +171,8 @@ public class VueListeVehicules extends JPanel implements GestionnaireFlotteObser
         dialog.setVisible(true);
     }
     
-  private void supprimerVehiculeSelectionnee() {
+  //Supprimer le véhicule sélectionné
+    private void supprimerVehiculeSelectionnee() {
         int row = tableVehicules.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "Sélectionnez un véhicule");
@@ -178,6 +186,8 @@ public class VueListeVehicules extends JPanel implements GestionnaireFlotteObser
         }
     }
     
+         // Afficher le dialog pour signaler un entretien
+
     private void afficherDialogEntretien() {
         int row = tableVehicules.getSelectedRow();
         if (row == -1) {
