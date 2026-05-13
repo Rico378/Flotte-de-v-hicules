@@ -23,16 +23,13 @@ public class VueApplication extends JFrame {
         setLocationRelativeTo(null);
         setResizable(true);
         
-        // Initialiser le contrôleur
         gestionnaire = new GestionnaireFlotte();
-        gestionnaire.charger(); // Charger les données sauvegardées
+        gestionnaire.charger();
         
-        // Initialiser les données de test si la flotte est vide
         if (gestionnaire.obtenirVehicules().isEmpty()) {
             initialiserDonneesTest();
         }
         
-        // Créer les onglets
         onglets = new JTabbedPane();
         onglets.setTabPlacement(JTabbedPane.TOP);
         
@@ -46,7 +43,6 @@ public class VueApplication extends JFrame {
         
         add(onglets, BorderLayout.CENTER);
         
-        // Menu et barre d'outils
         creerMenuBar();
         creerBarreOutils();
         
@@ -59,7 +55,6 @@ public class VueApplication extends JFrame {
     private void creerMenuBar() {
         JMenuBar menuBar = new JMenuBar();
         
-        // Menu Fichier
         JMenu menuFichier = new JMenu("Fichier");
         
         JMenuItem itemCharger = new JMenuItem("Charger");
@@ -93,7 +88,6 @@ public class VueApplication extends JFrame {
         menuFichier.addSeparator();
         menuFichier.add(itemQuitter);
         
-        // Menu Aide
         JMenu menuAide = new JMenu("Aide");
         JMenuItem itemAbout = new JMenuItem("À propos");
         itemAbout.addActionListener(e -> {
@@ -177,14 +171,12 @@ public class VueApplication extends JFrame {
     private void initialiserDonneesTest() {
         System.out.println("=== Initialisation des données de test ===");
         
-        // Ajouter des véhicules
         gestionnaire.ajouterVehicule(new model.VéhiculeLéger("AB-123-CD", 45000, "Renault", "Scénic"));
         gestionnaire.ajouterVehicule(new model.VéhiculeLéger("EF-456-GH", 32000, "Peugeot", "206"));
         gestionnaire.ajouterVehicule(new model.VéhiculeLourd("IJ-789-KL", 120000, "Volvo", "FH16", 18000));
         gestionnaire.ajouterVehicule(new model.VéhiculeLéger("MN-012-OP", 8000, "Mercedes", "Vito"));
         gestionnaire.ajouterVehicule(new model.VéhiculeSpécial("QR-345-ST", 56000, "Renault", "Master", 4));
         
-        // Ajouter des chauffeurs
         gestionnaire.ajouterChauffeur(new model.Chauffeur("Dupont", "Jean", "B"));
         gestionnaire.ajouterChauffeur(new model.Chauffeur("Martin", "Marie", "C"));
         gestionnaire.ajouterChauffeur(new model.Chauffeur("Bernard", "Pierre", "D"));
@@ -195,7 +187,6 @@ public class VueApplication extends JFrame {
         gestionnaire.ajouterMission(new model.MissionLongue("Transport marchandises Marseille"));
         gestionnaire.ajouterMission(new model.MissionCourte("Intervention d'urgence"));
         
-        // Signaler une maintenance
         gestionnaire.signalerEntretien("IJ-789-KL", "Révision moteur");
         
         System.out.println("✓ Données de test créées");
